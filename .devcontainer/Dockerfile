@@ -29,3 +29,8 @@ CMD [ "sleep", "infinity" ]
 # [Optional] Uncomment this section to install additional OS packages.
 # RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 #     && apt-get -y install --no-install-recommends <your-package-list-here>
+
+# Install the Confluent Cloud CLI - see:
+# https://docs.confluent.io/current/quickstart/cloud-quickstart/index.html#cloud-cli-install
+SHELL ["/bin/bash", "-o", "pipefail", "-c"] 
+RUN curl -L --http1.1 https://cnfl.io/ccloud-cli | sh -s -- -b /usr/local/bin
