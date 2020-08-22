@@ -136,6 +136,7 @@ services:
       xpack.security.enabled: "false"
       XPACK_SECURITY_ENABLED: "false"
       xpack.monitoring.enabled: "false"
+    network_mode: host
 
   # kibana:
   #   image: docker.elastic.co/kibana/kibana:5.5.2
