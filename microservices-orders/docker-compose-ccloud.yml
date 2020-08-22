@@ -41,89 +41,89 @@ services:
         source /opt/docker/delta_configs/env.delta
         /opt/docker/scripts/run-services.sh
 
-  # connect:
-  #   image: ${REPOSITORY}/cp-server-connect:${CONFLUENT_DOCKER_TAG}
-  #   container_name: connect
-  #   depends_on:
-  #     - sqlite
-  #   ports:
-  #     - "8083:8083"
-  #   environment:
-  #     CONNECT_BOOTSTRAP_SERVERS: $BOOTSTRAP_SERVERS
-  #     CONNECT_REST_ADVERTISED_HOST_NAME: connect
-  #     CONNECT_GROUP_ID: "examples-microservices-orders"
-  #     CONNECT_REST_ADVERTISED_HOST_NAME: connect
-  #     CONNECT_REST_PORT: 8083
+  connect:
+    image: ${REPOSITORY}/cp-server-connect:${CONFLUENT_DOCKER_TAG}
+    container_name: connect
+    depends_on:
+      - sqlite
+    ports:
+      - "8083:8083"
+    environment:
+      CONNECT_BOOTSTRAP_SERVERS: $BOOTSTRAP_SERVERS
+      CONNECT_REST_ADVERTISED_HOST_NAME: connect
+      CONNECT_GROUP_ID: "examples-microservices-orders"
+      CONNECT_REST_ADVERTISED_HOST_NAME: connect
+      CONNECT_REST_PORT: 8083
 
-  #     CONNECT_SECURITY_PROTOCOL: SASL_SSL
-  #     CONNECT_SASL_JAAS_CONFIG: $SASL_JAAS_CONFIG
-  #     CONNECT_SASL_MECHANISM: PLAIN
-  #     CONNECT_SSL_ENDPOINT_IDENTIFICATION_ALGORITHM: "HTTPS"
+      CONNECT_SECURITY_PROTOCOL: SASL_SSL
+      CONNECT_SASL_JAAS_CONFIG: $SASL_JAAS_CONFIG
+      CONNECT_SASL_MECHANISM: PLAIN
+      CONNECT_SSL_ENDPOINT_IDENTIFICATION_ALGORITHM: "HTTPS"
 
-  #     CONNECT_CONFIG_STORAGE_TOPIC: connect-configs
-  #     CONNECT_OFFSET_STORAGE_TOPIC: connect-offsets
-  #     CONNECT_STATUS_STORAGE_TOPIC: connect-statuses
+      CONNECT_CONFIG_STORAGE_TOPIC: connect-configs
+      CONNECT_OFFSET_STORAGE_TOPIC: connect-offsets
+      CONNECT_STATUS_STORAGE_TOPIC: connect-statuses
 
-  #     CONNECT_REPLICATION_FACTOR: 3
-  #     CONNECT_CONFIG_STORAGE_REPLICATION_FACTOR: 3
-  #     CONNECT_OFFSET_STORAGE_REPLICATION_FACTOR: 3
-  #     CONNECT_STATUS_STORAGE_REPLICATION_FACTOR: 3
+      CONNECT_REPLICATION_FACTOR: 3
+      CONNECT_CONFIG_STORAGE_REPLICATION_FACTOR: 3
+      CONNECT_OFFSET_STORAGE_REPLICATION_FACTOR: 3
+      CONNECT_STATUS_STORAGE_REPLICATION_FACTOR: 3
 
-  #     CONNECT_KEY_CONVERTER: io.confluent.connect.avro.AvroConverter
-  #     CONNECT_KEY_CONVERTER_SCHEMA_REGISTRY_URL: $SCHEMA_REGISTRY_URL
-  #     CONNECT_KEY_CONVERTER_BASIC_AUTH_CREDENTIALS_SOURCE: $BASIC_AUTH_CREDENTIALS_SOURCE
-  #     CONNECT_KEY_CONVERTER_SCHEMA_REGISTRY_BASIC_AUTH_USER_INFO: $SCHEMA_REGISTRY_BASIC_AUTH_USER_INFO
-  #     CONNECT_VALUE_CONVERTER: io.confluent.connect.avro.AvroConverter
-  #     CONNECT_VALUE_CONVERTER_SCHEMA_REGISTRY_URL: $SCHEMA_REGISTRY_URL
-  #     CONNECT_VALUE_CONVERTER_BASIC_AUTH_CREDENTIALS_SOURCE: $BASIC_AUTH_CREDENTIALS_SOURCE
-  #     CONNECT_VALUE_CONVERTER_SCHEMA_REGISTRY_BASIC_AUTH_USER_INFO: $SCHEMA_REGISTRY_BASIC_AUTH_USER_INFO
+      CONNECT_KEY_CONVERTER: io.confluent.connect.avro.AvroConverter
+      CONNECT_KEY_CONVERTER_SCHEMA_REGISTRY_URL: $SCHEMA_REGISTRY_URL
+      CONNECT_KEY_CONVERTER_BASIC_AUTH_CREDENTIALS_SOURCE: $BASIC_AUTH_CREDENTIALS_SOURCE
+      CONNECT_KEY_CONVERTER_SCHEMA_REGISTRY_BASIC_AUTH_USER_INFO: $SCHEMA_REGISTRY_BASIC_AUTH_USER_INFO
+      CONNECT_VALUE_CONVERTER: io.confluent.connect.avro.AvroConverter
+      CONNECT_VALUE_CONVERTER_SCHEMA_REGISTRY_URL: $SCHEMA_REGISTRY_URL
+      CONNECT_VALUE_CONVERTER_BASIC_AUTH_CREDENTIALS_SOURCE: $BASIC_AUTH_CREDENTIALS_SOURCE
+      CONNECT_VALUE_CONVERTER_SCHEMA_REGISTRY_BASIC_AUTH_USER_INFO: $SCHEMA_REGISTRY_BASIC_AUTH_USER_INFO
       
-  #     CONNECT_INTERNAL_KEY_CONVERTER: "org.apache.kafka.connect.json.JsonConverter"
-  #     CONNECT_INTERNAL_VALUE_CONVERTER: "org.apache.kafka.connect.json.JsonConverter"
+      CONNECT_INTERNAL_KEY_CONVERTER: "org.apache.kafka.connect.json.JsonConverter"
+      CONNECT_INTERNAL_VALUE_CONVERTER: "org.apache.kafka.connect.json.JsonConverter"
 
-  #     # CLASSPATH required due to CC-2422
-  #     CLASSPATH: "/usr/share/java/monitoring-interceptors/monitoring-interceptors-${CONFLUENT}.jar"
-  #     CONNECT_PLUGIN_PATH: '/usr/share/java,/usr/share/confluent-hub-components/,/connectors/'
+      # CLASSPATH required due to CC-2422
+      CLASSPATH: "/usr/share/java/monitoring-interceptors/monitoring-interceptors-${CONFLUENT}.jar"
+      CONNECT_PLUGIN_PATH: '/usr/share/java,/usr/share/confluent-hub-components/,/connectors/'
 
-  #     CONNECT_PRODUCER_SECURITY_PROTOCOL: SASL_SSL
-  #     CONNECT_PRODUCER_SASL_JAAS_CONFIG: $SASL_JAAS_CONFIG
-  #     CONNECT_PRODUCER_SASL_MECHANISM: PLAIN
-  #     CONNECT_PRODUCER_INTERCEPTOR_CLASSES: "io.confluent.monitoring.clients.interceptor.MonitoringProducerInterceptor"
-  #     CONNECT_PRODUCER_CONFLUENT_MONITORING_INTERCEPTOR_BOOTSTRAP_SERVERS: $BOOTSTRAP_SERVERS
-  #     CONNECT_PRODUCER_CONFLUENT_MONITORING_INTERCEPTOR_SECURITY_PROTOCOL: SASL_SSL
-  #     CONNECT_PRODUCER_CONFLUENT_MONITORING_INTERCEPTOR_SASL_JAAS_CONFIG: $SASL_JAAS_CONFIG
-  #     CONNECT_PRODUCER_CONFLUENT_MONITORING_INTERCEPTOR_SASL_MECHANISM: PLAIN
+      CONNECT_PRODUCER_SECURITY_PROTOCOL: SASL_SSL
+      CONNECT_PRODUCER_SASL_JAAS_CONFIG: $SASL_JAAS_CONFIG
+      CONNECT_PRODUCER_SASL_MECHANISM: PLAIN
+      CONNECT_PRODUCER_INTERCEPTOR_CLASSES: "io.confluent.monitoring.clients.interceptor.MonitoringProducerInterceptor"
+      CONNECT_PRODUCER_CONFLUENT_MONITORING_INTERCEPTOR_BOOTSTRAP_SERVERS: $BOOTSTRAP_SERVERS
+      CONNECT_PRODUCER_CONFLUENT_MONITORING_INTERCEPTOR_SECURITY_PROTOCOL: SASL_SSL
+      CONNECT_PRODUCER_CONFLUENT_MONITORING_INTERCEPTOR_SASL_JAAS_CONFIG: $SASL_JAAS_CONFIG
+      CONNECT_PRODUCER_CONFLUENT_MONITORING_INTERCEPTOR_SASL_MECHANISM: PLAIN
 
-  #     CONNECT_CONSUMER_SECURITY_PROTOCOL: SASL_SSL
-  #     CONNECT_CONSUMER_SASL_JAAS_CONFIG: $SASL_JAAS_CONFIG
-  #     CONNECT_CONSUMER_SASL_MECHANISM: PLAIN
-  #     CONNECT_CONSUMER_INTERCEPTOR_CLASSES: "io.confluent.monitoring.clients.interceptor.MonitoringConsumerInterceptor"
-  #     CONNECT_CONSUMER_CONFLUENT_MONITORING_INTERCEPTOR_BOOTSTRAP_SERVERS: $BOOTSTRAP_SERVERS
-  #     CONNECT_CONSUMER_CONFLUENT_MONITORING_INTERCEPTOR_SECURITY_PROTOCOL: SASL_SSL
-  #     CONNECT_CONSUMER_CONFLUENT_MONITORING_INTERCEPTOR_SASL_JAAS_CONFIG: $SASL_JAAS_CONFIG
-  #     CONNECT_CONSUMER_CONFLUENT_MONITORING_INTERCEPTOR_SASL_MECHANISM: PLAIN
-  #   volumes:
-  #     - database:/opt/docker/db/data
-  #     - $PWD/stack-configs:/opt/docker/stack-configs
-  #   command:
-  #     - bash
-  #     - -c
-  #     - |
-  #       echo "Installing connector plugins"
-  #       confluent-hub install --no-prompt confluentinc/kafka-connect-jdbc:latest
-  #       confluent-hub install --no-prompt confluentinc/kafka-connect-elasticsearch:latest
-  #       # echo "Launching Kafka Connect worker"
-  #       # /etc/confluent/docker/run
+      CONNECT_CONSUMER_SECURITY_PROTOCOL: SASL_SSL
+      CONNECT_CONSUMER_SASL_JAAS_CONFIG: $SASL_JAAS_CONFIG
+      CONNECT_CONSUMER_SASL_MECHANISM: PLAIN
+      CONNECT_CONSUMER_INTERCEPTOR_CLASSES: "io.confluent.monitoring.clients.interceptor.MonitoringConsumerInterceptor"
+      CONNECT_CONSUMER_CONFLUENT_MONITORING_INTERCEPTOR_BOOTSTRAP_SERVERS: $BOOTSTRAP_SERVERS
+      CONNECT_CONSUMER_CONFLUENT_MONITORING_INTERCEPTOR_SECURITY_PROTOCOL: SASL_SSL
+      CONNECT_CONSUMER_CONFLUENT_MONITORING_INTERCEPTOR_SASL_JAAS_CONFIG: $SASL_JAAS_CONFIG
+      CONNECT_CONSUMER_CONFLUENT_MONITORING_INTERCEPTOR_SASL_MECHANISM: PLAIN
+    volumes:
+      - database:/opt/docker/db/data
+      - $PWD/stack-configs:/opt/docker/stack-configs
+    command:
+      - bash
+      - -c
+      - |
+        echo "Installing connector plugins"
+        confluent-hub install --no-prompt confluentinc/kafka-connect-jdbc:latest
+        confluent-hub install --no-prompt confluentinc/kafka-connect-elasticsearch:latest
+        # echo "Launching Kafka Connect worker"
+        # /etc/confluent/docker/run
 
-  # sqlite:
-  #   image: sqlite:latest
-  #   container_name: sqlite
-  #   volumes:
-  #     - database:/db/data
-  #   build:
-  #     context: ./db 
-  #   stdin_open: true
-  #   tty: true
+  sqlite:
+    image: sqlite:latest
+    container_name: sqlite
+    volumes:
+      - database:/db/data
+    build:
+      context: ./db 
+    stdin_open: true
+    tty: true
 
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:5.6.16
