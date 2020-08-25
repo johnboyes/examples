@@ -130,13 +130,12 @@ services:
     container_name: elasticsearch
     depends_on:
       - connect
-    ports:
-      - "9200:9200"
+    # ports:
+    #   - "9200:9200"
     environment:
       xpack.security.enabled: "false"
       XPACK_SECURITY_ENABLED: "false"
       xpack.monitoring.enabled: "false"
-    network_mode: host
 
   # kibana:
   #   image: docker.elastic.co/kibana/kibana:5.5.2

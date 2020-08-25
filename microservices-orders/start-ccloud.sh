@@ -40,7 +40,7 @@ printf "\n====== Giving services $WARMUP_TIME seconds to startup\n"
 sleep 10 
 
 printf "\n====== Configuring Elasticsearch mappings\n"
-./dashboard/set_elasticsearch_mapping.sh
+./dashboard/set_elasticsearch_mapping_docker.sh
 
 # printf "\n====== Submitting connectors\n\n"
 # printf "====== Submitting Kafka Connector to source customers from sqlite3 database and produce to topic 'customers'\n"
